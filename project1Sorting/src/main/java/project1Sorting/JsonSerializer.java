@@ -60,10 +60,10 @@ public class JsonSerializer {
         
         System.out.println("************************************");
         System.out.println("------------------------------------");
-        InList inList = new InList();
+        OutList outList = new OutList();
         int inNumber[] = {5, 35, 1, 272, 12, 0, -2, 12};
-        inList.setInList(inNumber);
-        System.out.println(serializer.serialize(inList));
+        outList.setOutList(inNumber);
+        System.out.println(serializer.serialize(outList));
 
     }
     

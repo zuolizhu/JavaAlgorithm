@@ -50,13 +50,30 @@ public class DiscernJsonService extends HttpServlet {
         // String className = new JsonClassDiscerner().discern(jsonStr);
 
         // Create Json reader object and discern the content from the JSON message
-        String outList = new JsonClassDiscerner().discern(jsonStr);
+        int[] inList = new JsonClassDiscerner().discern(jsonStr);
+
+        // Create a sorter to sort the input list
+        SortList sorter = new SortList();
+        sorter.sort(inList);
+
+        // Setup output list from sorted list
+        int[] sortedList = inList;
+        OutList outList = new OutList();
+        outList.setOutList(sortedList);
+
+        // Serialize output JSON String
+        JsonSerializer serializer = new JsonSerializer();
+        String outputJSON = serializer.serialize(outList);
+
+
+
+        //Create outList and serialize java content to JSON message
 
         // Set response content type to be JSON
         response.setContentType("application/json");
         // Send back the name of the class as a JSON message
         PrintWriter out = response.getWriter();
-        out.println("{ \"outList\" : " + "\"" + outList + "\"" + "}");
+        out.println(outputJSON);
     }
     
     
