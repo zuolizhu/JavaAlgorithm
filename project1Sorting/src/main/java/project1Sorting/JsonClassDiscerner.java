@@ -2,9 +2,6 @@ package project1Sorting;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 
-import java.util.Arrays;
-import java.util.List;
-
 public class JsonClassDiscerner {
 
     public JsonClassDiscerner() {
@@ -14,13 +11,6 @@ public class JsonClassDiscerner {
         ObjectMapper mapper = new ObjectMapper();
         // mapper.disable(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES);
 
-        try { 
-            Person person = mapper.readValue(jsonStr, Person.class);
-            return "person";
-        }
-        catch (Exception e) {
-            // e.printStackTrace(); 
-        }
         try {
             Pet pet = mapper.readValue(jsonStr, Pet.class);
             return "pet";
