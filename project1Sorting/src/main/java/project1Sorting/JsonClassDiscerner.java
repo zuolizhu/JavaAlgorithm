@@ -2,6 +2,7 @@ package project1Sorting;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 
+import java.util.Arrays;
 import java.util.List;
 
 public class JsonClassDiscerner {
@@ -30,7 +31,9 @@ public class JsonClassDiscerner {
         try {
             InList inlist = mapper.readValue(jsonStr, InList.class);
             int[] values = inlist.getInList();
-
+            SortList sortList = new SortList();
+            sortList.sort(values);
+            System.out.println("sorted list: " + Arrays.toString(values));
             return "Discerned list";
         } catch (Exception e) {
 
