@@ -25,31 +25,21 @@ public class JsonClassDiscerner {
     public static void main(String[] args) {
         String msg;
         JsonClassDiscerner discerner = new JsonClassDiscerner();
-        System.out.println("************************************"); 
-
-        msg = "{ \"name\" : \"Fido\", \"species\" : \"Dog\" }";
-        System.out.println(msg);
-        System.out.println(discerner.discern(msg));
-
         System.out.println("************************************");
 
-        msg = "{ \"name\" : \"Fido\", \"age\" : \"2\" }";
-        System.out.println(msg);
-        System.out.println(discerner.discern(msg));
-
-        System.out.println("************************************");
-
-        System.out.println("------------------------------------");
-        msg = "{ \"inList\" : [5, 35, 1, 272, 12, 0, -2, 12] }";
+        msg = "{ \"InList\" : [5, 35, 1, 272, 12, 0, -2, 12] }";
         System.out.println(msg);
         int[] inList = new JsonClassDiscerner().discern(msg);
-        SortList sorter = new SortList();
-        sorter.sort(inList);
-        int[] sortedList = inList;
-        System.out.println("Sorted List: ");
-        System.out.println(sortedList[2]);
 
-
+        if(inList.length == 0) {
+            System.out.println("Nonono you input shit list");
+        } else {
+            SortList sorter = new SortList();
+            sorter.sort(inList);
+            int[] sortedList = inList;
+            System.out.println("Sorted List: ");
+            System.out.println(sortedList[2]);
+        }
 
         System.out.println("------------------------------------");
 
