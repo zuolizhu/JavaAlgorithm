@@ -59,6 +59,12 @@ public class JsonSerializer {
         System.out.println(serializer.serialize(goodStudent)); 
         
         System.out.println("************************************");
+        System.out.println("------------------------------------");
+        InList inList = new InList();
+        int inNumber[] = {5, 35, 1, 272, 12, 0, -2, 12};
+        inList.setInList(inNumber);
+        System.out.println(serializer.serialize(inList));
+
     }
     
 }

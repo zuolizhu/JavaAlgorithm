@@ -26,8 +26,8 @@ public class JsonClassDiscerner {
             // e.printStackTrace(); 
         }
         try {
-            SortList sortList = mapper.readValue(jsonStr, SortList.class);
-            return "What?";
+            InList inlist = mapper.readValue(jsonStr, InList.class);
+            return "Discerned list";
         } catch (Exception e) {
 
         }
@@ -48,14 +48,14 @@ public class JsonClassDiscerner {
 
         System.out.println("************************************");
         
-        msg = "{ \"name\" : \"Fido\", \"lastName\" : \"Dog\" }";
+        msg = "{ \"name\" : \"Fido\", \"age\" : \"2\" }";
         System.out.println(msg);
         System.out.println(discerner.discern(msg));
 
         System.out.println("************************************");
 
         System.out.println("------------------------------------");
-        msg = "{ \"inList\" : [5, 35, 1, 272, 12, 0, -2, 12] }";
+        msg = "{ \"inList\" : [5, 12, 0, -2, 12] }";
         System.out.println(msg);
         System.out.println(discerner.discern(msg));
         System.out.println("------------------------------------");
