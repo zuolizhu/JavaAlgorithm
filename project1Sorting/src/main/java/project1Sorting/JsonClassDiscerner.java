@@ -31,9 +31,14 @@ public class JsonClassDiscerner {
         try {
             InList inlist = mapper.readValue(jsonStr, InList.class);
             int[] values = inlist.getInList();
-            SortList sortList = new SortList();
-            sortList.sort(values);
+            SortList sorter = new SortList();
+            sorter.sort(values);
             System.out.println("sorted list: " + Arrays.toString(values));
+            JsonSerializer serializer = new JsonSerializer();
+            System.out.println("----------prepare for out-----");
+            OutList outList = new OutList();
+            outList.setOutList(values);
+            System.out.println(serializer.serialize(outList));
             return "Discerned list";
         } catch (Exception e) {
 
