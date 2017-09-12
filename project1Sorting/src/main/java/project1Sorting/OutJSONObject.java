@@ -5,7 +5,15 @@ import java.io.Serializable;
 public class OutJSONObject implements Serializable{
     private int[] outList;
     private String algorithm;
-    private int timeMS;
+    private long timeMS;
+
+    public long getTimeMS() {
+        return timeMS;
+    }
+
+    public void setTimeMS(long timeMS) {
+        this.timeMS = timeMS;
+    }
 
     public OutJSONObject() {
     }
@@ -26,11 +34,4 @@ public class OutJSONObject implements Serializable{
         this.algorithm = algorithm;
     }
 
-    public int getTimeMS() {
-        return timeMS;
-    }
-
-    public void setTimeMS(int timeMS) {
-        this.timeMS = timeMS;
-    }
 }

@@ -48,8 +48,9 @@ public class DiscernJsonService extends HttpServlet {
 
         // Create Json reader object and discern the content from the JSON message
         int[] inList = new JsonClassDiscerner().discern(jsonStr);
-        String outputJSON;
 
+        // Initialize the output JSON String
+        String outputJSON;
         JsonSerializer serializer = new JsonSerializer();
 
         if(inList.length == 0) {
@@ -59,15 +60,21 @@ public class DiscernJsonService extends HttpServlet {
         } else {
             // Create a sorter to sort the input list
             SortList sorter = new SortList();
+
+            // compute sorting time
+            long startTime = System.currentTimeMillis();
             sorter.sort(inList);
+            long endTime = System.currentTimeMillis();
+
+            long executionTime = endTime - startTime;
 
             // Setup output JSON from sorted list
             int[] sortedList = inList;
-            OutJSONObject outJSONObject = new OutJSONObject();
 
+            OutJSONObject outJSONObject = new OutJSONObject();
             outJSONObject.setOutList(sortedList);
-            outJSONObject.setAlgorithm("quick sort");
-            outJSONObject.setTimeMS(25);
+            outJSONObject.setAlgorithm("quicksort");
+            outJSONObject.setTimeMS(executionTime);
 
             // Serialize output JSON String
 
