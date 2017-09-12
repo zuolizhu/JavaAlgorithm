@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+
+<web-app xmlns="http://java.sun.com/xml/ns/j2ee"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://java.sun.com/xml/ns/j2ee http://java.sun.com/xml/ns/j2ee/web-app_2_4.xsd"
+    version="2.4">
+
+    <display-name>DiscernJsonService</display-name>
+    <description>
+        This is a program that sort the input integer list from postman,
+        and output the sorted list.
+        DiscernJsonService will handle the http post action.
+    </description>
+
+    <servlet>
+        <servlet-name>DiscernJsonService</servlet-name>
+        <servlet-class>project1Sorting.DiscernJsonService</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>DiscernJsonService</servlet-name>
+        <url-pattern>/DiscernJsonService</url-pattern>
+    </servlet-mapping>
+
+</web-app>     
