@@ -2,6 +2,9 @@ package project1Sorting;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+
 public class JsonClassDiscerner {
 
     public JsonClassDiscerner() {
@@ -27,20 +30,22 @@ public class JsonClassDiscerner {
         JsonClassDiscerner discerner = new JsonClassDiscerner();
         System.out.println("************************************");
 
-        msg = "{ \"InList\" : [5, 35, 1, 272, 12, 0, -2, 12] }";
+        msg = "{ \"inList\" : [5, 35, 1, 272, 12, 0, -2, 12] }";
         System.out.println(msg);
         int[] inList = new JsonClassDiscerner().discern(msg);
 
         if(inList.length == 0) {
-            System.out.println("Nonono you input shit list");
+            JsonSerializer serializer = new JsonSerializer();
+            ErrorHandler error = new ErrorHandler();
+            error.setMessage("Malformed JSON");
+            System.out.println(serializer.serialize(error));
         } else {
             SortList sorter = new SortList();
             sorter.sort(inList);
             int[] sortedList = inList;
             System.out.println("Sorted List: ");
-            System.out.println(sortedList[2]);
+            System.out.println(Arrays.toString(sortedList));
         }
-
         System.out.println("------------------------------------");
 
     }

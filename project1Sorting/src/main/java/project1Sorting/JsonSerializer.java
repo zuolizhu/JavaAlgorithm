@@ -65,6 +65,16 @@ public class JsonSerializer {
         outList.setOutList(inNumber);
         System.out.println(serializer.serialize(outList));
 
+        System.out.println("------------------------------------");
+        System.out.println("************************************");
+        OutJSONObject outJSONObject = new OutJSONObject();
+
+        outJSONObject.setOutList(inNumber);
+        outJSONObject.setAlgorithm("quick sort");
+        outJSONObject.setTimeMS(25);
+        System.out.println(serializer.serialize(outJSONObject));
+
+        System.out.println("************************************");
     }
     
 }

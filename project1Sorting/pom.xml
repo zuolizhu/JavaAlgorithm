@@ -4,7 +4,7 @@
 	<groupId>com.zuolizhu</groupId>
     
 	<artifactId>project1Sorting</artifactId>
-	<version>ZuoliZhu001</version>
+	<version>ZuoliZhu002</version>
     
 	<url>http://maven.apache.org</url>
 	<packaging>war</packaging>

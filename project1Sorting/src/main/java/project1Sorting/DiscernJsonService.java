@@ -50,21 +50,28 @@ public class DiscernJsonService extends HttpServlet {
         int[] inList = new JsonClassDiscerner().discern(jsonStr);
         String outputJSON;
 
+        JsonSerializer serializer = new JsonSerializer();
+
         if(inList.length == 0) {
-            outputJSON = "Bad input!";
+            ErrorHandler error = new ErrorHandler();
+            error.setMessage("Malformed JSON");
+            outputJSON = serializer.serialize(error);
         } else {
             // Create a sorter to sort the input list
             SortList sorter = new SortList();
             sorter.sort(inList);
 
-            // Setup output list from sorted list
+            // Setup output JSON from sorted list
             int[] sortedList = inList;
-            OutList outList = new OutList();
-            outList.setOutList(sortedList);
+            OutJSONObject outJSONObject = new OutJSONObject();
+
+            outJSONObject.setOutList(sortedList);
+            outJSONObject.setAlgorithm("quick sort");
+            outJSONObject.setTimeMS(25);
 
             // Serialize output JSON String
-            JsonSerializer serializer = new JsonSerializer();
-            outputJSON = serializer.serialize(outList);
+
+            outputJSON = serializer.serialize(outJSONObject);
         }
 
         // Set response content type to be JSON
@@ -73,7 +80,5 @@ public class DiscernJsonService extends HttpServlet {
         PrintWriter out = response.getWriter();
         out.println(outputJSON);
     }
-    
-    
 }
 
