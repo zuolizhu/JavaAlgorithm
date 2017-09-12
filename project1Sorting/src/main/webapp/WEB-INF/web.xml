@@ -7,7 +7,9 @@
 
     <display-name>DiscernJsonService</display-name>
     <description>
-        DiscernJsonService class will do the http stuff.
+        This is a program that sort the input integer list from postman,
+        and output the sorted list.
+        DiscernJsonService will handle the http post action.
     </description>
 
     <servlet>
