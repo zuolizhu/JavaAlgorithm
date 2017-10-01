@@ -28,12 +28,10 @@ public class JsonSerializer {
 
         System.out.println("************************************");
 
-        int inNumber[] = {5, 35, 1, 272, 12, 0, -2, 12};
+        String outStringArr[] = {"job4","job1"};
 
         OutJSONObject outJSONObject = new OutJSONObject();
-        outJSONObject.setOutList(inNumber);
-        outJSONObject.setAlgorithm("quick sort");
-        outJSONObject.setTimeMS(25);
+        outJSONObject.setOutList(outStringArr);
         System.out.println(serializer.serialize(outJSONObject));
 
         System.out.println("************************************");
