@@ -1,4 +1,4 @@
-package project1Sorting;
+package project2PriorityQueue;
 
 import java.io.Serializable;
 

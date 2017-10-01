@@ -15,7 +15,7 @@
 
     <servlet>
         <servlet-name>DiscernJsonService</servlet-name>
-        <servlet-class>project1Sorting.DiscernJsonService</servlet-class>
+        <servlet-class>project2PriorityQueue.DiscernJsonService</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>DiscernJsonService</servlet-name>

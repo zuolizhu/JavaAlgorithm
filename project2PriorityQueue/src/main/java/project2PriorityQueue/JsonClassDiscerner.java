@@ -1,8 +1,7 @@
-package project1Sorting;
+package project2PriorityQueue;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 
 public class JsonClassDiscerner {

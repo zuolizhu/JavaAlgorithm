@@ -1,10 +1,8 @@
 
-package project1Sorting;
+package project2PriorityQueue;
 
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import java.util.Vector;
-import java.util.List; 
 
 public class JsonSerializer {
 

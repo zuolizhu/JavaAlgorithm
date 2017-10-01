@@ -1,4 +1,4 @@
-package project1Sorting;
+package project2PriorityQueue;
 
 public class SortList {
     private int[] numberList;
