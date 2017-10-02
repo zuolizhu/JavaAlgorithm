@@ -8,7 +8,7 @@ import javax.servlet.http.*;
 
 
 // Extend HttpServlet class
-public class DiscernJsonService extends HttpServlet {
+public class SortService extends HttpServlet {
 
   // Standard servlet method 
     public void init() throws ServletException { 
@@ -46,46 +46,13 @@ public class DiscernJsonService extends HttpServlet {
             jsonStr = br.readLine();
         }
 
-        // Create Json reader object and discern the content from the JSON message
-        int[] inList = new JsonClassDiscerner().discern(jsonStr);
-
-        // Initialize the output JSON String
-        String outputJSON;
-        JsonSerializer serializer = new JsonSerializer();
-
-        if(inList.length == 0) {
-            ErrorHandler error = new ErrorHandler();
-            error.setMessage("Malformed JSON");
-            outputJSON = serializer.serialize(error);
-        } else {
-            // Create a sorter to sort the input list
-            SortList sorter = new SortList();
-
-            // compute sorting time
-            long startTime = System.currentTimeMillis();
-            sorter.sort(inList);
-            long endTime = System.currentTimeMillis();
-
-            long executionTime = endTime - startTime;
-
-            // Setup output JSON from sorted list
-            int[] sortedList = inList;
-
-            OutJSONObject outJSONObject = new OutJSONObject();
-            outJSONObject.setOutList(sortedList);
-            outJSONObject.setAlgorithm("quicksort");
-            outJSONObject.setTimeMS(executionTime);
-
-            // Serialize output JSON String
-
-            outputJSON = serializer.serialize(outJSONObject);
-        }
-
+        // Create Json reader object and discern the class from the JSON message
+        String result = new Sorter().sort(jsonStr);
         // Set response content type to be JSON
         response.setContentType("application/json");
         // Send back the name of the class as a JSON message
         PrintWriter out = response.getWriter();
-        out.println(outputJSON);
+        out.println(result);
     }
 }
 
