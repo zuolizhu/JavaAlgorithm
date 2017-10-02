@@ -2,6 +2,7 @@ package project2PriorityQueue;
 
 
 // Import required java libraries
+
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -13,7 +14,7 @@ import java.io.PrintWriter;
 
 
 // Extend HttpServlet class
-public class DiscernJsonService extends HttpServlet {
+public class PriorityQueueService extends HttpServlet {
 
   // Standard servlet method 
     public void init() throws ServletException { 
@@ -51,14 +52,14 @@ public class DiscernJsonService extends HttpServlet {
             jsonStr = br.readLine();
         }
 
-        // Create Json reader object and discern the content from the JSON message
-        String inList = new JsonClassDiscerner().discern(jsonStr);
+        // Create Json reader object and discern the class from the JSON message
+        String result = new ZzQueue().queueOperation(jsonStr);
 
         // Set response content type to be JSON
         response.setContentType("application/json");
         // Send back the name of the class as a JSON message
         PrintWriter out = response.getWriter();
-        out.println(inList);
+        out.println(result);
     }
 }
 
