@@ -2,8 +2,7 @@ package project2PriorityQueue;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 
-import java.util.LinkedList;
-import java.util.Queue;
+import java.util.PriorityQueue;
 
 public class JsonDiscerner {
 
@@ -12,7 +11,7 @@ public class JsonDiscerner {
 
     public String discern(String jsonStr) {
         ObjectMapper mapper = new ObjectMapper();
-        Queue<Job> jobQueue = new LinkedList<Job>();
+        PriorityQueue<Job> jobQueue = new PriorityQueue<>(new JobComparator());
         // mapper.disable(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES);
 
         /**
@@ -22,7 +21,7 @@ public class JsonDiscerner {
             Job jobList = mapper.readValue(jsonStr, Job.class);
             for(int i = 0; i < jobList.getInList().size(); i++) {
                 if(jobList.getInList().get(i).getCmd().equals("enqueue")) {
-                    jobQueue.add(jobList.getInList().get(i));
+                    jobQueue.add(new Job(jobList.getInList().get(i).getName(), jobList.getInList().get(i).getPri()));
                     System.out.println("Enqueue hit!");
                 } else if (jobList.getInList().get(i).getCmd().equals("dequeue")) {
                     jobQueue.remove();
@@ -36,8 +35,7 @@ public class JsonDiscerner {
              * This part is to reach the queue
              */
             while(!jobQueue.isEmpty()){
-                System.out.println(jobQueue.peek().getName());
-
+                System.out.println(jobQueue.peek().getName() + " =->" + jobQueue.peek().getPri());
                 jobQueue.remove();
             }
             return "Hit the shit!!!";
@@ -49,7 +47,7 @@ public class JsonDiscerner {
     }
 
 
-    // test app
+    // test case
     public static void main(String[] args) {
         String msg;
         JsonDiscerner discerner = new JsonDiscerner();
@@ -57,8 +55,8 @@ public class JsonDiscerner {
         System.out.println("************************************");
 //        msg = "{ \"inList\":[{\"cmd\":\"enqueue\", \"name\":\"job1\", \"pri\":4}, {\"cmd\":\"dequeue\"}]}";
 
-        msg = "{ \"inList\":[{\"cmd\":\"enqueue\", \"name\":\"job1\", \"pri\":4}]}";
-
+//        msg = "{ \"inList\":[{\"cmd\":\"enqueue\", \"name\":\"job1\", \"pri\":4}]}";
+        msg = "{ \"inList\":[{\"cmd\":\"enqueue\", \"name\":\"job1\", \"pri\":4},{\"cmd\":\"enqueue\", \"name\":\"job2\", \"pri\":3},{\"cmd\":\"dequeue\"},{\"cmd\":\"enqueue\", \"name\":\"job3\", \"pri\":0},{\"cmd\":\"enqueue\", \"name\":\"job4\", \"pri\":1},{\"cmd\":\"dequeue\"}]}";
         System.out.println(msg);
         System.out.println(discerner.discern(msg));
         System.out.println("************************************");
