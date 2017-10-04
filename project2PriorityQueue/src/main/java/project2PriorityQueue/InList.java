@@ -1,16 +1,21 @@
 package project2PriorityQueue;
 
 import java.io.Serializable;
+import java.util.List;
+
 
 public class InList implements Serializable {
-    private int[] inList;
-    public InList() {}
 
-    public int[] getInList() {
+    private List<Job> inList;
+
+    public InList() {
+    }
+
+    public List<Job> getInList() {
         return inList;
     }
 
-    public void setInList(int[] inList) {
+    public void setInList(List<Job> inList) {
         this.inList = inList;
     }
 }
