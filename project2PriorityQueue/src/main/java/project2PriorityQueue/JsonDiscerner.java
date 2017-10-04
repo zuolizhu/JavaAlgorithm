@@ -49,17 +49,6 @@ public class JsonDiscerner {
 
     }
 
-    private String serialize(Object obj) {
-        String str = null;
-        try {
-            ObjectMapper mapper = new ObjectMapper();
-            str = mapper.writeValueAsString(obj);
-        } catch (Exception e) {
-            return "{ \"message\" : \"Error serializing result\" } ";
-        }
-        return str;
-    }
-
     // test case
     public static void main(String[] args) {
         String msg;
