@@ -15,7 +15,7 @@
 
     <servlet>
         <servlet-name>PriorityQueueService</servlet-name>
-        <servlet-class>project2PriorityQueue.PriorityQueueService</servlet-class>
+        <servlet-class>project2PriorityQueue.Ref.PriorityQueueService</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>PriorityQueueService</servlet-name>
