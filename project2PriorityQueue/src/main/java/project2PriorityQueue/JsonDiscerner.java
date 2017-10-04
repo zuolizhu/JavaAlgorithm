@@ -37,7 +37,7 @@ public class JsonDiscerner {
              */
             while(!jobQueue.isEmpty()){
                 System.out.println(jobQueue.peek().getName());
-                
+
                 jobQueue.remove();
             }
             return "Hit the shit!!!";
