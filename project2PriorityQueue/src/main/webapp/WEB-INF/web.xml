@@ -5,7 +5,7 @@
     xsi:schemaLocation="http://java.sun.com/xml/ns/j2ee http://java.sun.com/xml/ns/j2ee/web-app_2_4.xsd"
     version="2.4">
 
-    <display-name>PriorityQueueService</display-name>
+    <display-name>ZZPriorityQueueServer</display-name>
     <description>
         This project provides a RESTful service which accepts as a POST of JSON 
         a list of enqueue and dequeue statements onto an in-memory job queue.
@@ -14,12 +14,12 @@
     </description>
 
     <servlet>
-        <servlet-name>PriorityQueueService</servlet-name>
-        <servlet-class>project2PriorityQueue.Ref.PriorityQueueService</servlet-class>
+        <servlet-name>ZZPriorityQueueServer</servlet-name>
+        <servlet-class>project2PriorityQueue.ZZPriorityQueueServer</servlet-class>
     </servlet>
     <servlet-mapping>
-        <servlet-name>PriorityQueueService</servlet-name>
-        <url-pattern>/PriorityQueueService</url-pattern>
+        <servlet-name>ZZPriorityQueueServer</servlet-name>
+        <url-pattern>/ZZPriorityQueueServer</url-pattern>
     </servlet-mapping>
 
 </web-app>     
