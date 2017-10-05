@@ -1,8 +1,9 @@
 package project2PriorityQueue;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
-import java.util.LinkedList;
+import java.util.ArrayList;
 import java.util.PriorityQueue;
 
 public class JsonDiscerner {
@@ -13,7 +14,7 @@ public class JsonDiscerner {
     public String discern(String jsonStr) {
         ObjectMapper mapper = new ObjectMapper();
         PriorityQueue<Job> jobQueue = new PriorityQueue<>(new JobComparator());
-        LinkedList<Job> outList = new LinkedList<>();
+        ArrayList tempList = new ArrayList();
         // mapper.disable(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES);
 
         /**
@@ -32,21 +33,36 @@ public class JsonDiscerner {
                     return "List has bad cmd";
                 }
             }
-
             /**
              * This part is to reach the queue
              */
             while(!jobQueue.isEmpty()){
-                outList.add(jobQueue.peek());
+                tempList.add(jobQueue.peek().getName());
                 System.out.println(jobQueue.peek().getName() + " =->" + jobQueue.peek().getPri());
                 jobQueue.remove();
             }
-            return "Hit the shit!!!";
+
+            OutList outList = new OutList();
+            outList.setOutList(tempList);
+            return serialize(outList);
         }
+
         catch (Exception e) {
             return "{ \"message\" : \"Error - Malformed JSON\" } ";
         }
 
+    }
+
+    private String serialize(Object obj) {
+        String str = null;
+        try {
+            ObjectMapper mapper = new ObjectMapper();
+            mapper.setSerializationInclusion(JsonInclude.Include.NON_NULL);
+            str = mapper.writeValueAsString(obj);
+        } catch (Exception e) {
+            str = "<error>";
+        }
+        return str;
     }
 
     // test case
@@ -57,8 +73,8 @@ public class JsonDiscerner {
         System.out.println("************************************");
 //        msg = "{ \"inList\":[{\"cmd\":\"enqueue\", \"name\":\"job1\", \"pri\":4}, {\"cmd\":\"dequeue\"}]}";
 
-        msg = "{ \"inList\":[{\"cmd\":\"enqueue\", \"name\":\"job1\", \"pri\":4}]}";
-//        msg = "{ \"inList\":[{\"cmd\":\"enqueue\", \"name\":\"job1\", \"pri\":4},{\"cmd\":\"enqueue\", \"name\":\"job2\", \"pri\":3},{\"cmd\":\"dequeue\"},{\"cmd\":\"enqueue\", \"name\":\"job3\", \"pri\":0},{\"cmd\":\"enqueue\", \"name\":\"job4\", \"pri\":1},{\"cmd\":\"dequeue\"}]}";
+//        msg = "{ \"inList\":[{\"cmd\":\"enqueue\", \"name\":\"job1\", \"pri\":4}]}";
+        msg = "{ \"inList\":[{\"cmd\":\"enqueue\", \"name\":\"job1\", \"pri\":4},{\"cmd\":\"enqueue\", \"name\":\"job2\", \"pri\":3},{\"cmd\":\"dequeue\"},{\"cmd\":\"enqueue\", \"name\":\"job3\", \"pri\":0},{\"cmd\":\"enqueue\", \"name\":\"job4\", \"pri\":1},{\"cmd\":\"dequeue\"}]}";
         System.out.println(msg);
         System.out.println(discerner.discern(msg));
         System.out.println("************************************");
