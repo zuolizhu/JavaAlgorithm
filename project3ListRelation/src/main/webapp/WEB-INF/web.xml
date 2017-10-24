@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+
+<web-app xmlns="http://java.sun.com/xml/ns/j2ee"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://java.sun.com/xml/ns/j2ee http://java.sun.com/xml/ns/j2ee/web-app_2_4.xsd"
+    version="2.4">
+
+    <display-name>DiscernJsonService</display-name>
+    <description>
+        A RESTful service which accepts as a POST of 
+        JSON a list relationships [A, B] such that A is
+        smarter than B. Return in JSON the list sorted by smartness,
+        with the smartest person first.
+    </description>
+
+    <servlet>
+        <servlet-name>DiscernJsonService</servlet-name>
+        <servlet-class>listRelation.DiscernJsonService</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>DiscernJsonService</servlet-name>
+        <url-pattern>/DiscernJsonService</url-pattern>
+    </servlet-mapping>
+
+</web-app>     
