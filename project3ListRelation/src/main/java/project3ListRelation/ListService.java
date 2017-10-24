@@ -52,7 +52,7 @@ public class ListService extends HttpServlet {
         }
 
         // Create Json reader object and discern the class from the JSON message
-        String result = new Sorter().sort(jsonStr);
+        String result = new TopoSorter().sort(jsonStr);
         // Set response content type to be JSON
         response.setContentType("application/json");
         // Send back the name of the class as a JSON message
