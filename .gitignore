@@ -7,3 +7,4 @@
 *.zip
 *.properties
 project1Sorting/target/maven-archiver/pom.properties
+*.iml
