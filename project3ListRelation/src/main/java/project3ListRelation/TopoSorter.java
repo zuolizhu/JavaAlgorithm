@@ -11,13 +11,13 @@ public class TopoSorter {
         ObjectMapper mapper = new ObjectMapper();
 
         InList inList = null;
-
+        SmarterList sl = new SmarterList();
+        OutList outList = new OutList();
         /**
          * Discerner
          */
         try {
             inList = mapper.readValue(jsonStr, InList.class);
-            System.out.println("Hit dat shit!");
         }
         catch (Exception e) {
             return "{ \"message\" : \"Error - Malformed JSON\" } ";
@@ -26,15 +26,19 @@ public class TopoSorter {
          * Topological sort
          */
         try {
-//            Arrays.sort(inList.getInList());
-
+            for(int i = 0; i < inList.getInList().size(); i++) {
+                sl.add(inList.getInList().get(i).getSmarter().get(0).toString(), inList.getInList().get(i).getSmarter().get(1).toString());
+            }
+//            System.out.println(sl.toString());
         }
         catch (Exception e) {
             return "{ \"message\" : \"Error - Malformed JSON\" } ";
         }
 
 //        return serialize(inList).replace("inList", "outList");
-        return "Temp string returned";
+//        return "Temp string returned";
+        outList.setOutList(sl);
+        return serialize(outList);
     }
 
 
@@ -67,8 +71,18 @@ public class TopoSorter {
 
 
 
-        String case7 = "{ \"inList\" : [ {\"smarter\" :[\"Einstein\", \"Feynmann\"]}, {\"smarter\" :[\"Feynmann\", \"Gell-Mann\"]} ]}";
+        String case7 = "{ \"inList\" : [ {\"smarter\" :[\"Einstein\", \"Feynmann\"]},{\"smarter\" :[\"Feynmann\", \"Gell-Mann\"]} ]}";
+        String case8 = "{ \"inList\" : [ " +
+                "{\"smarter\" :[\"Einstein\", \"Feynmann\"]}," +
+                "{\"smarter\" :[\"Feynmann\", \"Gell-Mann\"]}, " +
+                "{\"smarter\" :[\"Gell-Mann\", \"Thorne\"]}, " +
+                "{\"smarter\" :[\"Einstein\", \"Lorentz\"]}, " +
+                "{\"smarter\" :[\"Lorentz\", \"Planck\"]}, " +
+                "{\"smarter\" :[\"Hilbert\", \"Noether\"]}," +
+                "{\"smarter\" :[\"Poincare\", \"Noether\"]} ]}";
         System.out.println(new TopoSorter().sort(case7));
+        System.out.println("-------------------------------------------------------------");
+        System.out.println(new TopoSorter().sort(case8));
     }
 
 }
