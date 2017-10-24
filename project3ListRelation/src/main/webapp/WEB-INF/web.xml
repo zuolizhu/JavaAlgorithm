@@ -5,21 +5,20 @@
     xsi:schemaLocation="http://java.sun.com/xml/ns/j2ee http://java.sun.com/xml/ns/j2ee/web-app_2_4.xsd"
     version="2.4">
 
-    <display-name>DiscernJsonService</display-name>
+    <display-name>ListService</display-name>
     <description>
-        A RESTful service which accepts as a POST of 
-        JSON a list relationships [A, B] such that A is
-        smarter than B. Return in JSON the list sorted by smartness,
-        with the smartest person first.
+        This is a program that sort the input integer list from postman,
+        and output the sorted list.
+        SortService will handle the http action.
     </description>
 
     <servlet>
-        <servlet-name>DiscernJsonService</servlet-name>
-        <servlet-class>listRelation.DiscernJsonService</servlet-class>
+        <servlet-name>ListService</servlet-name>
+        <servlet-class>project3ListRelation.ListService</servlet-class>
     </servlet>
     <servlet-mapping>
-        <servlet-name>DiscernJsonService</servlet-name>
-        <url-pattern>/DiscernJsonService</url-pattern>
+        <servlet-name>ListService</servlet-name>
+        <url-pattern>/ListService</url-pattern>
     </servlet-mapping>
 
 </web-app>     
