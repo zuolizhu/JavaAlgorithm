@@ -6,5 +6,6 @@
 *.war
 *.zip
 *.properties
-project1Sorting/target/maven-archiver/pom.properties
+*.properties
 *.iml
+*/web.xml
