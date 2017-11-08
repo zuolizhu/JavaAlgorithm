@@ -5,6 +5,12 @@ import java.awt.*;
 public class PointCounter {
     public static final float ALPHA = 0.001f;
 
+    /**
+     * Check weather the point is laying on the polygon edge
+     * @param point enumerated point
+     * @param points a bunch of points from user input
+     * @return true if point is lay on the edge
+     */
     public static boolean isPointOnLine(Point point, Point[] points) {
         int i, j;
         for (i = 0, j = points.length - 1; i < points.length; j = i++) {
@@ -22,6 +28,12 @@ public class PointCounter {
         return true;
     }
 
+    /**
+     * Check weather the point is inside the polygon
+     * @param point enumerated point
+     * @param points a bunch of points from user input
+     * @return true if point is inside the polygon
+     */
     public static boolean isPointInPolygon(Point point, Point[] points) {
         int i, j;
         for (i = 0, j = points.length - 1; i < points.length; j = i++) {

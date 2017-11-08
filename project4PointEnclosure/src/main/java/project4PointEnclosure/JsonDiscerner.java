@@ -14,6 +14,9 @@ public class JsonDiscerner {
         ObjectMapper mapper = new ObjectMapper();
         // mapper.disable(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES);
 
+        /**
+         * Initial the hit class for incoming JSON data
+         */
         InList inList = null;
         final int MAXPOSITION = 18;
         try {
@@ -22,11 +25,17 @@ public class JsonDiscerner {
             int count = 0;
             Point[] points = new Point[inList.getInList().size()];
 
+            /**
+             * Collect points and save into points array
+             */
             for (int i  = 0; i < inList.getInList().size(); i++) {
                 Point point = new Point(inList.getInList().get(i).getX(),inList.getInList().get(i).getY());
                 points[count++] = point;
             }
 
+            /**
+             * Enumerate points and count the number of points that inside the given polygon
+             */
             count = 0;
             for (int i = 0; i <= MAXPOSITION; i++) {
                 for (int j = 0; j <= MAXPOSITION; j++) {
@@ -37,6 +46,9 @@ public class JsonDiscerner {
                 }
             }
 
+            /**
+             * Format the result for output JASON
+             */
             OutList outList = new OutList();
             outList.setCount(count);
             return serialize(outList);
