@@ -6,16 +6,16 @@ import java.util.List;
 
 public class InList implements Serializable {
 
-    private List inList;
+    private List<Coordinate> inList;
 
     public InList() {
     }
 
-    public List getInList() {
+    public List<Coordinate> getInList() {
         return inList;
     }
 
-    public void setInList(List inList) {
+    public void setInList(List<Coordinate> inList) {
         this.inList = inList;
     }
 }

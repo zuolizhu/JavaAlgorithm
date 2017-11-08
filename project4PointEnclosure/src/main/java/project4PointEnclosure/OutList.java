@@ -5,6 +5,7 @@ import java.io.Serializable;
 public class OutList implements Serializable {
 
     private int count;
+
     public OutList () {}
 
     public int getCount() {

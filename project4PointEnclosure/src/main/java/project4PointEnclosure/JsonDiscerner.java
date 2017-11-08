@@ -3,6 +3,8 @@ package project4PointEnclosure;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
+import java.awt.*;
+
 public class JsonDiscerner {
 
     public JsonDiscerner() {
@@ -13,9 +15,31 @@ public class JsonDiscerner {
         // mapper.disable(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES);
 
         InList inList = null;
+        final int MAXPOSITION = 18;
         try {
             inList = mapper.readValue(jsonStr, InList.class);
-            return "Catch!";
+
+            int count = 0;
+            Point[] points = new Point[inList.getInList().size()];
+
+            for (int i  = 0; i < inList.getInList().size(); i++) {
+                Point point = new Point(inList.getInList().get(i).getX(),inList.getInList().get(i).getY());
+                points[count++] = point;
+            }
+
+            count = 0;
+            for (int i = 0; i <= MAXPOSITION; i++) {
+                for (int j = 0; j <= MAXPOSITION; j++) {
+                    Point point = new Point(i, j);
+                    if (PointCounter.isPointInPolygon(point, points) && !PointCounter.isPointOnLine(point, points)) {
+                        count++;
+                    }
+                }
+            }
+
+            OutList outList = new OutList();
+            outList.setCount(count);
+            return serialize(outList);
         }
         catch (Exception e) {
             return "{ \"message\" : \"Error - Malformed JSON\" } ";
@@ -32,7 +56,7 @@ public class JsonDiscerner {
             mapper.setSerializationInclusion(JsonInclude.Include.NON_NULL);
             str = mapper.writeValueAsString(obj);
         } catch (Exception e) {
-            str = "<error>";
+            return "{ \"message\" : \"Error serializing result\" } ";
         }
         return str;
     }
