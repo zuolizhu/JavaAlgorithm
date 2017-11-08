@@ -85,5 +85,25 @@ public class JsonDiscerner {
         System.out.println(msg);
         System.out.println(discerner.discern(msg));
         System.out.println("************************************");
+        msg = "{\"inList\":[{\"x\": 0,\"y\": 0}, {\"x\": 0,\"y\": 2}, {\"x\": 2,\"y\": 2}, {\"x\": 3,\"y\": 0}]}";
+        System.out.println(msg);
+        System.out.println(discerner.discern(msg));
+        System.out.println("************************************");
+        msg = "{\"inList\":[{\"x\": 1,\"y\": 1}, {\"x\": 1,\"y\": 3}, {\"x\": 4,\"y\": 3}, {\"x\": 4,\"y\": 1}]}";
+        System.out.println(msg);
+        System.out.println(discerner.discern(msg));
+        System.out.println("************************************");
+        msg = "{\"inList\":[{\"x\": 1,\"y\": 5}, {\"x\": 3,\"y\": 10}, {\"x\": 7,\"y\": 10}, {\"x\": 7,\"y\": 5}]}";
+        System.out.println(msg);
+        System.out.println(discerner.discern(msg));
+        System.out.println("************************************");
+        msg = "{\"inList\":[{\"x\": 11,\"y\": 7}, {\"x\": 11,\"y\": 10}, {\"x\": 14,\"y\": 7}]}";
+        System.out.println(msg);
+        System.out.println(discerner.discern(msg));
+        System.out.println("************************************");
+        msg = "{\"inList\":[{\"x\": 1,\"y\": 1}, {\"x\": 1,\"y\": 3}, {\"x\": 6,\"y\": 3}, {\"x\": 5,\"y\": 1}]}";
+        System.out.println(msg);
+        System.out.println(discerner.discern(msg));
+        System.out.println("************************************");
     }
 }
