@@ -31,7 +31,7 @@ public class JsonDiscerner {
             for (int i = 0; i <= MAXPOSITION; i++) {
                 for (int j = 0; j <= MAXPOSITION; j++) {
                     Point point = new Point(i, j);
-                    if (PointCounter.isPointInPolygon(point, points) && !PointCounter.isPointOnLine(point, points)) {
+                    if (PointCounter.isPointInPolygon(point, points) && !(PointCounter.isPointOnLine(point, points))) {
                         count++;
                     }
                 }
