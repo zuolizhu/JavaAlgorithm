@@ -3,7 +3,7 @@ package project4PointEnclosure;
 import java.awt.*;
 
 public class PointCounter {
-    public static final float ALPHA = 0.001f;
+    public static final float EPSILON = 0.001f;
 
     /**
      * Check weather the point is laying on the polygon edge
@@ -17,7 +17,7 @@ public class PointCounter {
             if (points[i].x != points[j].x) {
                 float a = (points[i].y - points[j].y) / (points[i].x - points[j].x);
                 float b = points[j].y - a * points[j].x;
-                if (Math.abs(point.y - (a * point.x +b)) < ALPHA) {
+                if (Math.abs(point.y - (a * point.x +b)) < EPSILON) {
                     return true;
                 }
             }
