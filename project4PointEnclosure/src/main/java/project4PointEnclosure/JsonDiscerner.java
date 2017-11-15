@@ -40,7 +40,7 @@ public class JsonDiscerner {
             for (int i = 0; i <= MAXPOSITION; i++) {
                 for (int j = 0; j <= MAXPOSITION; j++) {
                     Point point = new Point(i, j);
-                    if (PointCounter.isPointInPolygon(point, points) && !(PointCounter.isPointOnLine(point, points))) {
+                    if (PointCounter.contains(point, points) && !(PointCounter.isPointOnLine(point, points))) {
                         count++;
                     }
                 }
@@ -105,5 +105,11 @@ public class JsonDiscerner {
         System.out.println(msg);
         System.out.println(discerner.discern(msg));
         System.out.println("************************************");
+        msg = "{\"inList\":[{\"x\": 0,\"y\": 0}, {\"x\": 1,\"y\": 4}, {\"x\": 3,\"y\": 2}]}";
+        System.out.println(msg);
+        System.out.println(discerner.discern(msg));
+        System.out.println("************************************");
+
+
     }
 }

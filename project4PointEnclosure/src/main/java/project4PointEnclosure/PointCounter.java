@@ -4,7 +4,6 @@ import java.awt.*;
 
 public class PointCounter {
     public static final float EPSILON = 0.001f;
-
     /**
      * Check weather the point is laying on the polygon edge
      * @param point enumerated point
@@ -34,13 +33,14 @@ public class PointCounter {
      * @param points a bunch of points from user input
      * @return true if point is inside the polygon
      */
-    public static boolean isPointInPolygon(Point point, Point[] points) {
+    public static boolean contains(Point point, Point[] points) {
         int i, j;
         boolean result = false;
+        // Check for intersections
         for (i = 0, j = points.length - 1; i < points.length; j = i++) {
             if ((points[i].y > point.y) != (points[j].y > point.y) &&
                     (point.x < (points[j].x - points[i].x) * (point.y - points[i].y) / (points[j].y-points[i].y) + points[i].x)) {
-                result = !result;
+                result = !result;   // flip result for odd/even toggle
             }
         }
         return result;
