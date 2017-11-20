@@ -12,11 +12,7 @@ public class JsonDiscerner {
         ObjectMapper mapper = new ObjectMapper();
         // mapper.disable(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES);
         Detector detector = new Detector();
-        String type = "irregular";
-        // Output result set below
-        OutResult outResult = new OutResult();
-        outResult.setType(type);
-
+        String type;
         try {
             InList inList = mapper.readValue(jsonStr, InList.class);
             for (int i =0; i < inList.getInList().size(); i++) {
@@ -25,11 +21,24 @@ public class JsonDiscerner {
                 vertex1.addEdge(vertex2);
                 vertex2.addEdge(vertex1);
             }
+            if (detector.isBus()) {
+                type = "bus";
+            }
+            else if (detector.isRing()) {
+                type = "ring";
+            }
+            else if (detector.isStar()) {
+                type = "star";
+            }
+            else {
+                type = "irregular";
+            }
         }
         catch (Exception e) {
             return "{ \"message\" : \"Error - Malformed JSON\" } ";
         }
-
+        OutResult outResult = new OutResult();
+        outResult.setType(type);
         return serialize(outResult);
     }
 
