@@ -49,11 +49,21 @@ public class Detector extends ArrayList<Vertex> {
     }
 
     public boolean isRing() {
-        return false;
+        if (getEdges() != size() * 2) {
+            return false;
+        }
+        for (int i = 0; i < size(); i++) {
+
+        }
     }
 
     public boolean isStar() {
-        return false;
+        if (getEdges() != size() * 2 - 2) {
+            return false;
+        }
+        for (int i = 0; i < size(); i++) {
+            
+        }
     }
 
     private int getEdges() {
