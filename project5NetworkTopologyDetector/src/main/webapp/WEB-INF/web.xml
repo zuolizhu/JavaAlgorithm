@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+
+<web-app xmlns="http://java.sun.com/xml/ns/j2ee"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://java.sun.com/xml/ns/j2ee http://java.sun.com/xml/ns/j2ee/web-app_2_4.xsd"
+    version="2.4">
+
+    <display-name>ZZDetectorServer</display-name>
+    <description>
+        Study a representation of a computer network to determine which type of
+        network topology exists bus, ring, or star.
+    </description>
+
+    <servlet>
+        <servlet-name>ZZDetectorServer</servlet-name>
+        <servlet-class>project5NetworkTopologyDetector.ZZDetectorServer</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>ZZDetectorServer</servlet-name>
+        <url-pattern>/ZZDetectorServer</url-pattern>
+    </servlet-mapping>
+
+</web-app>     
