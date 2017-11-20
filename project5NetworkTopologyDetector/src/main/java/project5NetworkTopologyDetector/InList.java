@@ -1,21 +1,21 @@
 package project5NetworkTopologyDetector;
 
 import java.io.Serializable;
-import java.util.List;
+import java.util.ArrayList;
 
 
 public class InList implements Serializable {
 
-    private List<Job> inList;
+    private ArrayList<Connected> inList;
 
     public InList() {
     }
 
-    public List<Job> getInList() {
+    public ArrayList<Connected> getInList() {
         return inList;
     }
 
-    public void setInList(List<Job> inList) {
+    public void setInList(ArrayList<Connected> inList) {
         this.inList = inList;
     }
 }
