@@ -11,15 +11,21 @@ public class JsonDiscerner {
     public String discern(String jsonStr) {
         ObjectMapper mapper = new ObjectMapper();
         // mapper.disable(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES);
+        String type = "bus";
+        // Output result set below
+        OutResult outResult = new OutResult();
+        outResult.setType(type);
 
         try {
             InList inList = mapper.readValue(jsonStr, InList.class);
-            return "Catch!";
+
+//            return type;
         }
         catch (Exception e) {
             return "{ \"message\" : \"Error - Malformed JSON\" } ";
         }
 
+        return serialize(outResult);
     }
 
     /**
