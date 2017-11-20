@@ -69,5 +69,9 @@ public class JsonDiscerner {
         System.out.println(msg);
         System.out.println(discerner.discern(msg));
         System.out.println("************************************");
+        msg = "{\"inList\":[{\"connected\":[\"A\", \"B\"]}, {\"connected\":[\"B\", \"C\"]}, {\"connected\":[\"C\", \"D\"]}, {\"connected\":[\"D\", \"E\"]}, {\"connected\":[\"E\", \"A\"]}]}";
+        System.out.println(msg);
+        System.out.println(discerner.discern(msg));
+        System.out.println("************************************");
     }
 }

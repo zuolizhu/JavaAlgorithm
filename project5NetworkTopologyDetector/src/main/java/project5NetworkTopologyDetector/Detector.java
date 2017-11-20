@@ -41,7 +41,7 @@ public class Detector extends ArrayList<Vertex> {
                     break;
                 }
             }
-            if(closed.isEmpty()) {
+            if (closed.isEmpty()) {
                 return true;
             }
         }
@@ -53,8 +53,29 @@ public class Detector extends ArrayList<Vertex> {
             return false;
         }
         for (int i = 0; i < size(); i++) {
-
+            String start = get(i).getName();
+            HashSet<String> closed = getNames();
+            closed.remove(start);
+            Vertex current = getVertex(start);
+            while (!closed.isEmpty()) {
+                boolean isRing = false;
+                for (String s : closed) {
+                    if (current.hasEdge(s)) {
+                        current = getVertex(s);
+                        closed.remove(s);
+                        isRing = true;
+                        break;
+                    }
+                }
+                if (!isRing) {
+                    break;
+                }
+            }
+            if (closed.isEmpty() && current.hasEdge(start)) {
+                return true;
+            }
         }
+        return false;
     }
 
     public boolean isStar() {
@@ -62,8 +83,9 @@ public class Detector extends ArrayList<Vertex> {
             return false;
         }
         for (int i = 0; i < size(); i++) {
-            
+
         }
+        return false;
     }
 
     private int getEdges() {
