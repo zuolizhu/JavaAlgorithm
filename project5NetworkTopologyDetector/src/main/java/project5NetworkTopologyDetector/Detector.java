@@ -22,6 +22,29 @@ public class Detector extends ArrayList<Vertex> {
         if (getEdges() != size() * 2 - 2) {
             return false;
         }
+        for (int i = 0; i < size(); i++) {
+            String start = get(i).getName();
+            HashSet<String> closed = getNames();
+            closed.remove(start);
+            Vertex current = getVertex(start);
+            while (!closed.isEmpty()) {
+                boolean isBus = false;
+                for (String s : closed) {
+                    if (current.hasEdge(s)) {
+                        current = getVertex(s);
+                        closed.remove(s);
+                        isBus = true;
+                        break;
+                    }
+                }
+                if (!isBus) {
+                    break;
+                }
+            }
+            if(closed.isEmpty()) {
+                return true;
+            }
+        }
         return false;
     }
 
