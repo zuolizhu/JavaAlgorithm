@@ -11,15 +11,20 @@ public class JsonDiscerner {
     public String discern(String jsonStr) {
         ObjectMapper mapper = new ObjectMapper();
         // mapper.disable(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES);
-        String type = "bus";
+        Detector detector = new Detector();
+        String type = "irregular";
         // Output result set below
         OutResult outResult = new OutResult();
         outResult.setType(type);
 
         try {
             InList inList = mapper.readValue(jsonStr, InList.class);
-
-//            return type;
+            for (int i =0; i < inList.getInList().size(); i++) {
+                Vertex vertex1 = detector.getVertex(inList.getInList().get(i).getConnected().get(0).toString());
+                Vertex vertex2 = detector.getVertex(inList.getInList().get(i).getConnected().get(1).toString());
+                vertex1.addEdge(vertex2);
+                vertex2.addEdge(vertex1);
+            }
         }
         catch (Exception e) {
             return "{ \"message\" : \"Error - Malformed JSON\" } ";
