@@ -2,6 +2,7 @@ package project5NetworkTopologyDetector;
 
 import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.Iterator;
 
 public class Detector extends ArrayList<Vertex> {
 
@@ -83,7 +84,20 @@ public class Detector extends ArrayList<Vertex> {
             return false;
         }
         for (int i = 0; i < size(); i++) {
-
+            String start = get(i).getName();
+            HashSet<String> closed = getNames();
+            closed.remove(start);
+            Vertex current = getVertex(start);
+            Iterator<String> iterator = closed.iterator();
+            while (iterator.hasNext()) {
+                String next = iterator.next();
+                if (current.hasEdge(next)) {
+                    iterator.remove();
+                }
+            }
+            if (closed.isEmpty()) {
+                return true;
+            }
         }
         return false;
     }
